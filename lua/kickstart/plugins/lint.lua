@@ -53,11 +53,12 @@ return {
           local clients = vim.lsp.get_clients { bufnr = 0 }
           local client = clients[1]
           if client ~= nil then
-           -- Only run the linter in buffers that you can modify in order to
-          -- avoid superfluous noise, notably within the handy LSP pop-ups that
-          -- describe the hovered symbol using Markdown.
-          if vim.opt_local.modifiable:get() then
-            lint.try_lint(nil, { cwd = client.root_dir })
+            -- Only run the linter in buffers that you can modify in order to
+            -- avoid superfluous noise, notably within the handy LSP pop-ups that
+            -- describe the hovered symbol using Markdown.
+            if vim.opt_local.modifiable:get() then
+              lint.try_lint(nil, { cwd = client.root_dir })
+            end
           end
         end,
       })
